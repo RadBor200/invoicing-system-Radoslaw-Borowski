@@ -16,7 +16,8 @@ class AppTest extends Specification {
         then:
         result != null
     }
-        def "dummy test to cover main"(){
+    
+    def "dummy test to cover main"(){
             setup:
             def app = new App()
 
@@ -24,4 +25,3 @@ class AppTest extends Specification {
             app.main();
     }
 }
-
