@@ -56,6 +56,7 @@ checkstyle {
     maxWarnings = 0
     maxErrors = 0
 }
+
 jacocoTestCoverageVerification {
     violationRules {
         rule {
@@ -72,6 +73,7 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
 test {
     finalizedBy jacocoTestReport
     finalizedBy jacocoTestCoverageVerification
