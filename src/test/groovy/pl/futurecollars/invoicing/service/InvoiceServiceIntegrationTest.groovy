@@ -4,7 +4,6 @@ import pl.futurecollars.invoicing.db.Database
 import pl.futurecollars.invoicing.db.memory.InMemoryDatabase
 import pl.futurecollars.invoicing.model.Invoice
 import spock.lang.Specification
-
 import static pl.futurecollars.invoicing.TestHelpers.invoice
 
 class InvoiceServiceIntegrationTest extends Specification {
@@ -68,14 +67,14 @@ class InvoiceServiceIntegrationTest extends Specification {
         service.getAll().isEmpty()
     }
 
-    def "deleting not existing invoice is not causing any error"() {
+    def "deleting not existing invoice return false"() {
         expect:
-        service.delete(123)
+        !service.delete(123)
     }
 
     def "it's possible to update the invoice"() {
         given:
-        int id = service.save(invoices.get(0))
+        int id = service.save(invoices.get(2))
 
         when:
         service.update(id, invoices.get(1))
@@ -84,12 +83,11 @@ class InvoiceServiceIntegrationTest extends Specification {
         service.getById(id).get() == invoices.get(1)
     }
 
-    def "updating not existing invoice throws exception"() {
+    def "updating not existing invoice return false"() {
         when:
-        service.update(213, invoices.get(1))
+        def result = service.update(213, invoices.get(1))
 
         then:
-        def ex = thrown(IllegalArgumentException)
-        ex.message == "Id 213 does not exist"
+        !result
     }
 }
