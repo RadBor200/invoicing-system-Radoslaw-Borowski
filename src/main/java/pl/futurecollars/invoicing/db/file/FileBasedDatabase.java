@@ -91,7 +91,7 @@ public class FileBasedDatabase implements Database {
       filesService.writeLinesToFile(databasePath, updatedList);
 
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to delete invoice with id: " + id, ex);
+      throw new RuntimeException("Failed to delete invoice with id number: " + id, ex);
     }
   }
 
